@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1749467316892" clover="3.2.0">
+  <project timestamp="1749467316892" name="All files">
+    <metrics statements="21" coveredstatements="20" conditionals="6" coveredconditionals="6" methods="9" coveredmethods="8" elements="36" coveredelements="34" complexity="0" loc="21" ncloc="21" packages="1" files="7" classes="7"/>
+    <file name="async_callbacks.js" path="C:\Users\hridyesh.sharma\OneDrive - InnovaSolutions\Work\Week3\testing_Node\js\async_callbacks.js">
+      <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+      <line num="2" count="2" type="stmt"/>
+      <line num="3" count="2" type="stmt"/>
+      <line num="7" count="2" type="stmt"/>
+    </file>
+    <file name="cloneArray.js" path="C:\Users\hridyesh.sharma\OneDrive - InnovaSolutions\Work\Week3\testing_Node\js\cloneArray.js">
+      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <line num="2" count="2" type="stmt"/>
+      <line num="4" count="1" type="stmt"/>
+    </file>
+    <file name="discount.js" path="C:\Users\hridyesh.sharma\OneDrive - InnovaSolutions\Work\Week3\testing_Node\js\discount.js">
+      <metrics statements="7" coveredstatements="7" conditionals="6" coveredconditionals="6" methods="1" coveredmethods="1"/>
+      <line num="3" count="6" type="cond" truecount="4" falsecount="0"/>
+      <line num="4" count="2" type="stmt"/>
+      <line num="7" count="4" type="cond" truecount="2" falsecount="0"/>
+      <line num="8" count="1" type="stmt"/>
+      <line num="11" count="3" type="stmt"/>
+      <line num="12" count="3" type="stmt"/>
+      <line num="15" count="1" type="stmt"/>
+    </file>
+    <file name="error.jdk.js" path="C:\Users\hridyesh.sharma\OneDrive - InnovaSolutions\Work\Week3\testing_Node\js\error.jdk.js">
+      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <line num="2" count="1" type="stmt"/>
+      <line num="5" count="1" type="stmt"/>
+    </file>
+    <file name="subtract.js" path="C:\Users\hridyesh.sharma\OneDrive - InnovaSolutions\Work\Week3\testing_Node\js\subtract.js">
+      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <line num="2" count="1" type="stmt"/>
+      <line num="5" count="1" type="stmt"/>
+    </file>
+    <file name="sum.js" path="C:\Users\hridyesh.sharma\OneDrive - InnovaSolutions\Work\Week3\testing_Node\js\sum.js">
+      <metrics statements="3" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="1"/>
+      <line num="2" count="1" type="stmt"/>
+      <line num="6" count="0" type="stmt"/>
+      <line num="9" count="1" type="stmt"/>
+    </file>
+    <file name="sync.testing.js" path="C:\Users\hridyesh.sharma\OneDrive - InnovaSolutions\Work\Week3\testing_Node\js\sync.testing.js">
+      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <line num="2" count="2" type="stmt"/>
+      <line num="5" count="1" type="stmt"/>
+    </file>
+  </project>
+</coverage>
