@@ -108,12 +108,64 @@ related data ko seperate documents mai rakho and connect them by id
 __________________________________________________________________________________________________________________________
 
 one to many relation : 
-an author can write many books
+
+an author can write many books , a product can have many tags , 
+a library can have many books , but a single same book cant be present in many libraries in the same time 
+
 
 ek record multiple records ke saath related hoga 
 
 one blog can have many comments,
-one product can have multiple reviews 
+one product can have multiple reviews , but same review cant be of many products
+
+// One product can have many tags
 
 but one review cant have multiple products ( not possible )
-two techniques for it : Embedding and refrencing 
+two techniques for it : Embedding and refrencing
+
+//embedded in case of product module where tags are embedded in the product document
+
+//refrencing : When we make a big application , where we need frequent updates we use refrencing data modelling 
+
+
+Storing related data in seperate documents and connecting them with ids
+___________________________________________________________________________________________________________________________ 
+
+
+MANY TO MANY RELATIONSHIP :
+-------------------------------
+
+Many students can enroll in a single course 
+and A Single student can enroll in multiple courses 
+
+A dev can work in multiple projects and multiple devs can work in a single project
+
+how we can implement many-to-many relationships : 
+
+INTREW QUESTIONS : 
+Q1) kyaa hum one-to-one , one-to-many , many-to-many ko humm embedding ke saath implement krr sakte hai ? 
+
+_______________________________________________________________________________________________________________
+
+one to one : easily , 
+_______________________________________________________________________________________________________________
+
+one to many: 
+
+there are very less senarios in which we use one to 
+many relationships using embedding , otherwise we mostly use refrencing
+it depends on the data , if our data is less then we 
+prefer embedding else if we know our data will grow we 
+will be using refrencing data modelling
+_______________________________________________________________________________________________________________
+
+many-to-many :
+
+we cant apply many-to-many relationships using embedding data modelling 
+duplication of data, if we have to make a change then that we will be forced to make changes everywhere,
+
+data sync nahi rehta , data update karna is very difficult , data duplication is there
+yeh kabhi bhi recommend nahi kiya jata , we can do it but not advisable
+
+_____________________________________________________________________________________________________________________
+

@@ -20,6 +20,8 @@ import { StudentsModule } from './students/students.module';
 import { UserModule } from './user/user.module';
 import { EmployeesModule } from './employees/employees.module';
 import { ProductModule } from './product/product.module';
+import { LibraryModule } from './library/library.module';
+import { ProjectModule } from './project/project.module';
 
 //global middleware lagana hai 
 //configureModule.forRoot: apni aap pe koi bhi cheez globally apply krr sakte hai 
@@ -35,7 +37,9 @@ import { ProductModule } from './product/product.module';
     StudentsModule,
     UserModule,
     EmployeesModule,
-    ProductModule
+    ProductModule,
+    LibraryModule,
+    ProjectModule
   ],
 
   controllers: [AppController, MynameController,ExceptionController, DatabaseController, EvController],
