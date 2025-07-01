@@ -1,0 +1,119 @@
+MONGO DB MAI SCHEMA KA KYA SCENE HOTA HAI 
+KAISE HUMM NEST JS  KA USE KARKE MONGODB DATABASE KA SCHEMA BANA SAKTE HAI 
+
+structure of data in the database , jo data mai databse mai store karuga uss data ka kyaa structure hoga 
+
+
+//data relationships in mongo DB
+
+data relationships: Documents ke beech mai connections banana
+
+COLLECTIONS : ---------------> DOCUMENTS(DATA STORE HOTA HAI )
+
+student ka course se kya relation hai , student ka teacher se kya relation hai 
+STUDENT DOC<----------------->COURSES 
+
+there are two techniques in mongoDB through which we can make relations
+
+1) Embedding: Jitna bhi related data hai usko ek hii document mai store karna
+              saare related data ko ek hii jagah store krr do 
+
+    ISS SE KYAA HOGA : querry ki search spped will be fast as all the related data will be at a single place, 
+    it is a technique to store data in mono DB
+
+    student + student ki university se related data + student ka course ka data 
+
+    Yeh sara data student se related hai isse student waale embedding mai store krr liya
+
+    Aisa karne ke nuksaan : jaise jaise data set  increase hoga  and data is updated with time we dont choose embedding there
+
+    Embedding ko sirf waha choose karege jab hamara data chota hota hai , ki hrr cheez ke liye alag alag document banane ki need nahi hai ,
+    sabhi related sata ko ek hii jagah store krr lo 
+
+// AGAR humme pata hai hamara data update maare ga , increase maare ga then we use refrencing for data model 
+
+
+2) Refrencing : Store data in seperate documents and link them using ID's ...
+Student <----------------------->courses
+courses ki id ko student ki id se link krr dena 
+iss se student ka data bhi alag rahega aur courses ka data bhi alag rahega 
+
+DATA WILL be more organised , seaching will be a bit slow but more organised 
+
+Mostly we use refrencing
+
+
+TYPES of DATA RELATIONSHIPS IN MONGO DB : 
+
+1) one to one  : EK DATA EK hii entety se link hoga , 
+eg : a student will have a single roll number 
+
+2) one to many   
+eg : An author can write  many books 
+
+3) many to many  
+eg : A student can enroll in many courses , a course can have many students 
+
+_______________________________________________________________________________________________________________
+
+Pros Of Embedding : 
+1) FAST retrival since everything is present in a single document
+
+2) Great for less data , simple for small related data 
+
+cons of embedding : not great when data size grows big 
+hard to update deeply nested data 
+
+
+when to use : 
+
+when we know related data is stored together  , 
+data is small and not frequently updated 
+
+
+_______________________________________________________________________________________________________________
+
+Pros of refrencing
+1) Documents are small in size as there is no extra data , related data is stored seperately 
+2) Easy to manage and update large data 
+
+
+CONS : 
+1) data retrival is kinda slow 
+2) when we are writing querries we need to use joins and populate in mongoose 
+
+
+when to use : 
+related data is large and updated independently , frequently update karna padega , hamara data kaafi zyada hai 
+toh waha pe refrencing ka use krrna padhta hai 
+
+data is large , frequently updated ,  toh uske liye refrencing ka use karte hai 
+
+___________________________________________________________________________________________________________________
+
+ONE TO ONE RELATIONSHIP : 
+
+How we can apply one to one relationships using embedding data modelling technique
+ek record ek hii record se link hoga , a student will have only one roll number 
+
+embedd Karke dekh liya : in case of students and their address 
+
+now we will be using refrencing for it 
+
+one to one relation
+store related data in seperate documents and link them by id 
+
+related data ko seperate documents mai rakho and connect them by id 
+
+__________________________________________________________________________________________________________________________
+
+one to many relation : 
+an author can write many books
+
+ek record multiple records ke saath related hoga 
+
+one blog can have many comments,
+one product can have multiple reviews 
+
+but one review cant have multiple products ( not possible )
+two techniques for it : Embedding and refrencing 
