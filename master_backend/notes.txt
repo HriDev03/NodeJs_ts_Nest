@@ -1,0 +1,128 @@
+✅ npm i prisma --save-dev
+What it does:
+
+Installs the Prisma CLI as a dev dependency (since you don’t need it in production).
+The CLI lets you run commands like prisma init, prisma generate, prisma migrate, etc.
+
+Why --save-dev?
+Because Prisma CLI is used during development, like setting up and managing the schema, generating types — not needed when your app is running in production.
+
+🧠 Note: If you're using prisma generate in runtime (e.g., Serverless environments), install it as a regular dependency (npm i prisma), not --save-dev.
+
+__________________________________________________________________________________________________________
+
+✅ npx prisma
+What it does:
+This runs the Prisma CLI without needing a global install.
+Just typing npx prisma shows you all available Prisma commands (like help menu).
+
+🧪 It’s like saying:
+“Hey Prisma CLI, what can you do?”
+
+___________________________________________________________________________________________________________
+
+✅ npx prisma init
+What it does:
+Initializes Prisma in your project by creating the following:
+
+
+📁 prisma/
+   └── schema.prisma  ← Main config file for Prisma ORM
+.env                ← For environment variables (like DB URL)
+
+
+schema.prisma includes:
+Your datasource (e.g., PostgreSQL/MySQL/SQLite)
+Your generator block (usually for TypeScript client)
+Your models (tables) will go here later.
+
+__________________________________________________________________________________________________________
+
+✅ Example
+After running all 3 commands:
+
+my-app/
+├── node_modules/
+├── prisma/
+│   └── schema.prisma
+├── .env
+├── package.json
+
+__________________________________________________________________________________________________________
+
+what is prisma client why do we need it 
+
+✅ Why do we need npm i @prisma/client?
+This installs the Prisma Client, which is your actual database access layer — the thing you use in your code to query the database.
+
+prisma client ki help se humm db mai querrying aur db se connection krr sakte hai 
+
+__________________________________________________________________________________________________________
+
+✅ What this means:
+Prisma is not generating the client in node_modules/@prisma/client, but instead:
+
+pgsql
+Copy code
+📁 /generated
+    └── index.js (and other Prisma client files)
+This is 100% valid, just a custom output path.
+
+🧠 Why would someone do this?
+To avoid regenerating large files inside node_modules
+
+To commit the client to Git (not recommended usually)
+
+For monorepos where multiple services share a common client
+
+Or just to keep things more "visible"
+
+🔧 How to reset it back to default?
+If you don’t want the generated folder, change this:
+
+prisma
+Copy code
+generator client {
+  provider = "prisma-client-js"
+  output   = "./generated"
+}
+To this:
+
+prisma
+Copy code
+generator client {
+  provider = "prisma-client-js"
+}
+Then run:
+
+
+npx prisma generate
+It will now generate the client inside:
+
+
+node_modules/@prisma/client
+
+generated/ folder = custom Prisma Client output
+
+Check schema.prisma → generator client { output: ... }
+Remove output if you want default behavio
+
+
+//pagination lagaye ge 
+
+1) offset pagination 
+
+2) infinite cursor pagination : aur data load krr deta hai , more good for performance
+
+// will make our http requests super secure , add security features to it
+app.use(helmet())
+
+
+//jo bhi kahi bhi apna frontend chala raha ho waha se api access ho jaaye
+app.use(cors())
+
+
+
+// RATE LIMITING : 
+user ne for loop lagaya upto 1000 times and keep hitting on api leads to server crash
+ek ip ek time tak sirf 60 times request krr sakta hai and uske baad uss ko server request jaane se pehle block krr de 

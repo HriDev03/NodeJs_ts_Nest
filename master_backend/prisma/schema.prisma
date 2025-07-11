@@ -1,0 +1,79 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+//saari schemas , saara db communication idhar hoga , migrations
+
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+// a User can have multiple news and a news belongs to a single user
+
+
+//creating our model here 
+model Users{
+  
+  //id
+  id Int @id @default(autoincrement())
+  
+  //name
+  name String @db.VarChar(191)
+  
+  //email
+  /*
+    better than text(default type) which is much larger than string  because it wont be taking much space
+    text takes more space then string
+  */ 
+  email String @db.VarChar(191) @unique
+  
+  //password
+  password String
+
+  //profile
+  profile String?
+
+  //created at
+  created_at DateTime @default(now())
+  
+  //updated at 
+  updated_at DateTime @default(now())
+
+  // ek user can create many news 
+  News News[]
+}
+
+
+model News{
+  
+  //id :primary key
+  id Int @id @default(autoincrement())
+  
+  //only a user will be able to create the news
+  user_id Int
+  // one to many relations
+  user Users @relation(fields: [user_id] , references: [id])
+  
+  //title can be 200 chars long
+  title String @db.VarChar(200)
+  
+  //content of news
+  content String
+
+  //image here we are using uuid
+  image String @db.VarChar(100)
+
+  created_at DateTime @default(now())
+
+  updated_at DateTime @default(now())
+
+}

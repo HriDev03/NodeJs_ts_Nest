@@ -13,7 +13,7 @@ export class Project extends Document{
     @Prop({type:[{type:Types.ObjectId,ref:'Developer'}]})
     //yaha prr projects ki id aa rahi hogi 
     developers:Types.ObjectId
-
+    // foreign key connection for devs with projects
 }
 
 export const ProjectSchema = SchemaFactory.createForClass(Project);
