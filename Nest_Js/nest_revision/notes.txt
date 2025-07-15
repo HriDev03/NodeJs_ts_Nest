@@ -1,0 +1,104 @@
+// MIDDLEWARES IN NEST JS : 
+a function called before the route handler, controller
+
+module based , global middleware
+
+ways to write middlewares in nest js 
+1)function based approach
+2) Class based approach
+
+PIPES 
+a pipe is a class that we annotate with Injectable() 
+decorator and fir we implement it using pipe transform Interface. 
+
+it is like transformers used to transform from one thing to another
+
+__________________________________________________________________________
+|WHY ARE THEY REQUIRED ?                                                   |
+|__________________________________________________________________________|
+                                                                          
+Eroor handling , controller se pehle pipes laga dete hai and it will      
+check if its input is in the from that we need it      
+
+it implements the pipetransform Interface, input validation ke liye use ho ta 
+hai
+
+PIPES controller se pehle use hota hai , it is used to check ki aane
+wala data wahi hai jo humme required hai ya nahi
+
+eg : if  it is a number let it be , else throw a validation error
+
+USE CASES : 
+1) DATA Transformation (strins---->Integer)
+2) DATA Validation (If data is in correct form )
+
+Built in pipes : 
+    
+-   ValidationPipe , 
+-   ParseIntPipe , 
+-   ParseFloatPipe , 
+-   ParseBoolPipe , 
+-   ParseArrayPipe , 
+-   ParseUUIDPipe , 
+-   ParseEnumPipe, 
+-   DefaultValuePipe
+
+jiss deta hai check lagana hai waha prr pipe laa do and validation will be done 
+
+
+// DECORATOR BASED VALIDATION 
+decoratos = validation
+
+validation ke liye decorators are imported from "class-validator"
+// custom pipes mai use karege
+
+class-transformer : 
+ek class ko agar plain object mai convert karna ho , 
+yaa aar plain object ko ek class mai convert karna ho 
+
+Class validator :
+provides decoration based and non-decoration based validation it works only on class
+isko use karne ki yeh shart honi chahiye ki yeh sirf class pe kaam karta hai 
+yeh objects pe kaam nahi karta hai 
+
+// Exceptions : when we want to tell the user that an error has occured 
+a scene is created when we want to tell the user that an error has occurred
+
+nest js has given many HTTP exceptions : 
+
+// HOW TO USE THEM : 
+throw new BadRequestException()
+
+// TO PASS CUSTOM MESSAGE WE NEED TO PASS A FEW ARGUMENTS 
+throw new BadRequestException(
+    objectOrError{
+        status: 400,
+        error:"Error aa aya hai ji "
+    }
+)
+
+
+__________________________________________________________________________
+
+
+// we can also make a custom exception class in nest js 
+import { HttpException, HttpStatus } from "@nestjs/common";
+
+export class BookException extends HttpException{
+    constructor(){
+        super('this is my custom book exception', HttpStatus.BAD_REQUEST)
+    }
+}
+
+
+__________________________________________________________________________
+
+Nest Js GUARDS : 
+
+guards is annootated with @Injectable() decoratos
+
+
+
+
+
+__________________________________________________________________________
