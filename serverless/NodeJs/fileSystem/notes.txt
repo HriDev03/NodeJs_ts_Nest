@@ -1,0 +1,4 @@
+USE CASES OF FILE SYSTEM 
+
+read , write , delete and even watch file , 
+directory management in directory using fs module

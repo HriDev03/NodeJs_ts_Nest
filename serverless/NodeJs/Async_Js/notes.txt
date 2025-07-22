@@ -1,0 +1,16 @@
+it allows us to break a large code into small steps 
+and with the help of these steps we can connect them by using
+callbacks, promises  and async await 
+
+
+Sync vs Async : 
+10 tasks and one hand : we will do it one by one 
+thats sync 
+
+in async we kinda have 10 tasks and 10 hands
+
+if image is loading sync itll load one by one 
+the second image wont load until the first one loads 
+
+but if images are loading async itll load seperately according to their own time
+nothing stops for anyone , the system still continues to run 

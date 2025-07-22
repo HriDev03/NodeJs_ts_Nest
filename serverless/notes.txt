@@ -1,0 +1,114 @@
+// Serverless vs Non Serverless
+
+api writing - REST / GRAPH-QL, node js , python springbbot
+
+to run our code we need a server , serverless can be there in any cloud provider
+
+AWS(EC2) --> is vim ko configure karuga according to my need --> will execute my code in this machine
+HERE server configs is managed by me : charged per hour bases
+
+machine configured by me , charged by me , 
+for auto scaling : we can create an autoscaling group and can tell its conditions
+
+Here we are managing the servers 
+we need to install linux , then run-time-env , deployments ans scaling we need to manage it 
+I need to manage this 
+
+Serverless : TUMM sirf code likho underlying infrastructure ki management humne nahi karni
+we gave our code to aws then amazon will decide ,
+
+what OS , how much RAM it needs : we dont need to manage it 
+upscale, downscale, managing infrastructure : sab amazon karega : SERVERLESS ----> server ki management is with amazon 
+
+in Lambda L it will cost per invocation , jab chalega tabh pay karna padega
+
+in EC2 : jab tak machine chalegi tabh tak , hamara website on rahegi , utni billing aaye gi 
+
+cost per invocation : sleep state : when a user will come , 
+when they will call the api call , then serverless will start our code , compile it , return it as response and then itll sleep
+
+Cold Start : Execute : Sleep ; charged per invocation 
+user invoked our code , amazon will calculate how many times there was an api call
+
+cost = cost per Invocation * number of calls
+
+autoscaling in serverless and in ec2 we need to define auto scaling groups 
+
+in case many users come : itll create multiple copies
+when traffic will be normal again itll then again will reduce back and will go to sleep state
+
+AWS LAMBDA KA NUKSAAN :
+cold start , will require some time to start again 
+Stateless : we are not managing any states here not good for socket connections 
+
+// Every function has a Handler function 
+every lambda function defines a lambda function in it when ever someone hits an API request , what  function will handle that request 
+
+handler fnctions are the entry point of a lambda function
+handler functions run when lambda is invoked 
+
+API gateway of aws 
+user hits API Gateway : Lambda function is invoked : handler function will handle the request 
+
+index.handler in lambda config
+handler function is invoked when the lambda function is invoked 
+
+//dynamo db , s3 , api gateway 
+//suppose if some data is uploaded then what bucket , data of the image is transferred to the lambda function received in the event object
+//details about the s3 project 
+
+
+//callback based syntax
+exports.myHandler=function(event, context,callback){
+
+}
+
+// a handler function is invoked when an api is hit 
+
+
+
+
+// EVEN TDRIVEN ARCHITECTURE
+no instances to manage
+no managemaent of operating system 
+no thinking of scaling and high availability
+dont need to take care of hardware
+
+- When an event happens , when something is loaded : S3 will create a lambda function 
+
+https://chatgpt.com/share/6875e340-bbac-8008-a5cb-e622bd35dbf5
+
+
+| ✅ Topic                                                                  | Why it matters                                                      |
+| ------------------------------------------------------------------------ | ------------------------------------------------------------------- |
+| **Core Modules** (`fs`, `path`)
+| **Event Loop & Async Handling** (`setTimeout`, `Promise`, `async/await`) | Needed in all backend logic, especially in Lambda                   |
+| **`http` module**                                                        | You won't use it in Lambda, but it's the core behind Express        |
+| **Streams & Buffers** (basic understanding)                              | For file uploads, logs, or handling large data                      |
+| **Working with `process.env`**                                           | Used heavily in Lambda (and `.env` usage)                           |
+| **How `require` and `import` work**                                      | Common in Node.js modules                                           |
+| **CommonJS vs ES Modules**                                               | Lambda uses ES Modules (`import`) — you need to know the difference |
+| **File structure & module exports**                                      | Organizing logic into functions and files                           |
+
+
+| ✅ Topic                            | What You’ll Learn                                                       
+| ----------------------------------- | ----------------------------------------------------------------------- 
+| `path` module**                     | Build file paths safely using `__dirname`, `path.join`, etc.            
+| Event Loop & Async Handling**       | Understand how Node handles concurrency, promises, microtasks           
+| Events & EventEmitter**             | Use custom events to decouple your code logic                           
+| Streams & Buffers (Basics)**        | Handle large files, uploads, logs without loading full memory           
+| `process` and `process.env`**       | Read env variables (`.env`), exit codes, CLI args — critical for Lambda 
+| Modules & Imports**                 |`require` vs `import`, `exports`, how Lambda uses ESM                   
+| Error Handling**                    | Catch async/sync errors, handle `unhandledRejection`                    
+| Bonus: `util`, `os`, `crypto`**     | Helpful utilities (`promisify`, hashing, memory info)                   
+| (Optional) Child Processes**        | Run shell commands from Node (useful but not urgent)                    
+
+
+
+
+
+
+//https://www.youtube.com/watch?v=4toBhwOj_48&list=PLxoOrmZMsAWyBy3qwWdNhtAi-J4yLK1k9 : aws
+//https://www.youtube.com/watch?v=yQBw8skBdZU: fs revise
+//Akshay saini : js
+//https://www.youtube.com/watch?v=5rG-YgTHMC8:aws digital cloud

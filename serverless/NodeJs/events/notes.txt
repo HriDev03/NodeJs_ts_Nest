@@ -1,0 +1,10 @@
+Anything which happens at a particular time is an event 
+event driven programming : we wrote a logic which will run when an event happens
+when someone joins its an event and when someone leaves that an event 
+
+every event will be attathed to one or more event listeners 
+and they will run in sequential  order , create events , attatch them 
+
+like when we create to db , on sucessfull execution it emits an event
+and if there is some error it emits an error handling event 
+

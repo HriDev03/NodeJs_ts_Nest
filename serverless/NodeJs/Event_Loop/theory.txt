@@ -1,0 +1,113 @@
+//Knowledge Heavy
+
+js : a syuncronous single threaded language, 
+it has one call stack and can do one thing at a time
+
+this call stack is present in js engine : and all code is executed here
+
+function a(){
+    clg("a")
+}
+a();
+clg("End")
+
+
+When any Js code is run : A Global Execution context is created
+and this is pushed in the callstack , whole code will run line by line here
+
+incase of function invocation : an execution context is created to execute the code of function a and will be pushed to call stack
+after the execution is completed the 
+
+a execution context is deleted
+then the last line is printed and there is nothing to execute the whole global execution context is then over
+
+// time tdes and js waits for none
+
+call stack does not have a timer 
+so how we run this code when there is a timer : 
+
+Browser --------------------------------------------------------
+        |       Js engine
+        |       ________________     local_storage
+        |       |               |
+        |       |   callstack   |
+        |       |               |
+        |       |               |
+        |       |               |       timers
+        |       |               |
+        |       |_______________|   dns resolution logic
+        |                           
+        |       geolocation , bluetooth , UI 
+        |
+        ----------------------------------------------------------
+
+how can js engine acess all these : web api's accessed throught the global object(window)
+
+setTimeout()
+DOM api
+local_storage
+fetch()
+console
+location
+
+browser wrap all these super powers to call stack by wrapping it into a global window object
+ 
+THE EVENT LOOP AND THE CALL BACK QUEUE
+
+//SET TIME OUT EXAMPLE
+we already know in set Timeout the timer is running, after times up it cant go directly to the call stack 
+so it will go to the call stack through the call back queue 
+
+
+and the event loop keeps checking the call back queue and put them into call stack for execution 
+
+
+
+//EVENT LISTENER 
+we have put a click event handler on the button click 
+the ge is created and code is executed line by line 
+
+// event listener is the power given to the java script eingine by the browser, it registers a callback on an event , it registers a callback method and attatches an event to it and mooves to the next line, the registered callback will sit and will wait for the event to happen and to be pushed to the call back queue for further execution 
+the work of the event loop is to continuously monitor call stack and call back queue
+
+event loop checks and if call stack is empty it quickly executes it 
+
+// fetch dosent act the same way as event isteners and callbacks , 
+fetch returns a promise and we need to send this callback function that we will send when the promise is resolved
+
+the microtask queue : just like callback queue we have micro task queue this is similar to callback queue but with higher priority, functions in the microtask queue will be executed first and
+functions in the callback queue will be run later 
+
+job of event loop to check if call stack is empty , 
+then will run tasks from micro task queue and functions in callback queue will be executed later thats how this works 
+
+
+what can come inside microtask queue : all the callbacks that come through promises will come here
+all normal cb form set timeout, web api go to callback queue(Macro Task queue), this also leads to starvation keeps on waiting for a long time 
+
+
+
+
+this runs after the current stack finishes
+process.nextTick() :------------>Then comes Promises(Micro Tasks):-------------->Then Macrotasks like setTimeout, setImmediate
+
+process.nextTick() —
+⚡ Runs immediately after the call stack is empty
+→ Before Promises, before anything else — even before Node blinks 😎
+
+Promises (.then()) —
+📦 Enters the Microtask Queue
+→ Runs after nextTick() but before timers or setImmediate()
+
+setImmediate() —
+🏁 Runs in the "check" phase of event loop
+→ Often executes after I/O is done, before setTimeout() if inside I/O
+
+setTimeout() —
+🐢 Runs in the timers phase
+→ Often comes last even with 0ms — not guaranteed, but common
+
+
+Call Stack ➝ nextTick ➝ Promise ➝ Immediate ➝ Timeout
+
+

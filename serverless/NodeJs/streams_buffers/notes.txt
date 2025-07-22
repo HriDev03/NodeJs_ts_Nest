@@ -1,0 +1,38 @@
+// readable , writable , duplex and transform streams 
+streams are abstract interfaced used to work with streaming data
+
+streaming data refers to data that can be read or 
+written incrementally , piece by piece rather than all at once
+
+thoda thoda chunks mai data ko read/write karna
+
+
+source(bucket1)-----------  small jugs (chunks )    ----------------------->bucket2 transfer the water here
+
+want to transfer the data in large file to other large file 
+we can do this by increasing capacity or passing data through streams chunk by chunk 
+
+water taken as chunk and moved by using buffer memory from source to destination
+
+TYPES : 
+
+readable stream : used for reading data , it can be over a network http request http.IncomingMessage() or process.stdIn()
+
+writable stream : used to write data into the files  it can be from network responses http.serverResponse() or process.stdout()
+
+Duplex stream : both readable and writable stream , web sockets , zlib streams compression/decompression
+
+Transform Streams : Output is transformed based on the input 
+zlib.createGzip() or encryption / decryption 
+ 
+why? efficiency, streams allows us to process data into chunks 
+streams minimises the memory consumption for systems with limited resources 
+
+Scalability : streams helps node js applications to scale better
+enables to handle large datasets more efficiently
+
+IO Operations : streams are ideal for handling input output operations like reading from and writing into the files, network connection or any other sources 
+since io ops can be slow,streams help by non blocking rest of the operations 
+
+
+Real time data feeds, live streaming, handling continuous user inputs processig data as it arrives 
