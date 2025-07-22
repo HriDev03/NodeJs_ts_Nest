@@ -1,0 +1,8 @@
+node js process are single threaded but what if we want to harness the full potential of that processor
+we use child processes
+
+there are 4 ways :
+1) exec  , 
+2) exec file
+3) spawn 
+4) fork 
