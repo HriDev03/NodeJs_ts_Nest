@@ -11,6 +11,7 @@ import fileUpload from "express-fileupload"
 import helmet from "helmet";
 import cors from "cors";
 import { limiter } from "./config/ratelimiter.js";
+import logger from "./config/logger.js";
 
 
 const app=express()
@@ -34,6 +35,9 @@ app.use(limiter)
 
 //mounting routes
 app.use("/api",ApiRoutes)
+
+//logger
+logger.info("hey testing ...")
 
 app.get("/",(req,res)=>{
     return res.json({message:"Server is working"});

@@ -3,6 +3,8 @@ import { loginSchema, registerSchema } from "../validations/authvalidations.js";
 import prisma from "../DB/db.config.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import { sendEmail } from "../config/mailer.js";
+import logger from "../config/logger.js";
 
 export class AuthController {
   static async register(req, res) {
@@ -119,4 +121,33 @@ export class AuthController {
       });
     }
   }
+  
+  //send  test email
+  static async sendTestEmail(req,res){
+    try{
+      const {email}=req.query
+      const payload={
+        toEmail:email,
+        subject:"test email",
+        body:"<h1> HEY USER , TEST EMAIL FROM MASTER BACKEND</h1>"
+      }
+
+      await sendEmail(payload.toEmail,payload.subject,payload.body)
+      return res.status(200).json({
+        message:"Email sent sucessfully"
+      })
+    }catch(error){
+        logger.error({type:"Email Error",body:error})
+        return res.status(500).json({
+          message:"Something went wrong please try again"
+        })
+    }
+  }
+  
+  
+
+
 }
+
+
+

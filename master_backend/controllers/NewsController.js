@@ -2,9 +2,11 @@ import vine, { errors } from "@vinejs/vine";
 import { newsSchema } from "../validations/newsValidation.js";
 import { generateRandomNum, imageValidator, removeImage, uploadImage } from "../utils/helper.js";
 import prisma from "../DB/db.config.js";
-import path from "path";
+
 import NewsApiTransform from "../transform/newsApiTransform.js";
-import { ADDRGETNETWORKPARAMS } from "dns";
+
+import redisCache from "../DB/redis.config.js";
+import logger from "../config/logger.js";
 
 export class NewsController {
   // TO SEE ALL NEWS 
@@ -122,6 +124,12 @@ export class NewsController {
           user_id: payload.user_id,
         },
       });
+
+      //remove cache : when creating we will remove the cache 
+      //because everytime we will get a new cache else old cache will be stored
+      redisCache.del("/api/news",(err)=>{
+        if(err) throw err;
+      })
 
       return res.status(201).json({
         message: "News created successfully",
@@ -247,6 +255,7 @@ export class NewsController {
   }
 
   // Delete news
+  //delete ke case mai i want that the old caching gets flushed so that the person gets latest data
   static async destroy(req, res) {
     try{
           const {id}=req.params
@@ -283,6 +292,7 @@ export class NewsController {
           })
 
     }catch(error){
+      logger.error(error?.message)
       return res.status(500).json({
         status:500,
         message:"Something went wrong try again "
