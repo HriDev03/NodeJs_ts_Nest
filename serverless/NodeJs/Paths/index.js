@@ -35,24 +35,94 @@ console.log("Dirr extensions : ",path.extname(__dirname));
 
 console.log("_________________________________________________");
 
-// parse : it will give us an object who will represent the significant properties of the path
+// parse : it will give us an object who will represent the significant properties of the path as an object
 console.log("Paths: ");
-
 console.log("file Paths : ",path.parse(__filename));
 console.log("Dirr Paths : ",path.parse(__dirname));
 
+//we have format pethod that returns the path string  given an obect
+console.log("file path from format : ",path.format(path.parse(__filename)));
+
+//can fetch these properties the same way we fetch in case of an object
+// isAbsolute: if it is an absolute path
 console.log("____________________________________________________________________");
 console.log(" is it an Absolute path ");
-
 //is absolute will tell if a path is absolute or not
 console.log("file Paths : ",path.isAbsolute(__filename));
 console.log("Dirr Paths : ",path.isAbsolute(__dirname));
 console.log("Dirr Paths : ",path.isAbsolute("./notes.txt"));
 
-// JOIN : 5:55
+console.log("_________________________________________________________________________________");
+console.log("Join method");
+// JOIN 
+// which joins all given path segments together using platform specific seperators as dilimitors and then normalises the resulting path
 
-https://www.youtube.com/watch?v=4toBhwOj_48&list=PLxoOrmZMsAWyBy3qwWdNhtAi-J4yLK1k9 : aws
-https://www.youtube.com/watch?v=p995SdRXw_E : CodeEvolution
-https://www.youtube.com/watch?v=yQBw8skBdZU: fs revise
-Akshay saini : js
-https://www.youtube.com/watch?v=5rG-YgTHMC8:aws digital cloud
+//joinign the paths 
+console.log(path.join("folder1","folder2","index.html"));
+console.log(path.join("/folder1","folder2","index.html"));
+//  [ / for mac ] and [ \ for windows ]
+
+//Normalising the paths
+
+//will remove // here will only be /
+console.log(path.join("/folder1","//folder2","index.html"));
+
+//from folder 2 jump one folder up and concatinate the file name
+console.log(path.join("/folder1","//folder2","../index.html"));
+
+//this will give Absolte path to our data.json 
+console.log(path.join(__dirname,"data.json"));
+
+
+console.log("_________________________________________________________________________________________________");
+console.log("resolve: ");
+//resolve: will resolve sequence of paths as an absolute path
+
+/*
+    if we didnt give nay forward slash (/) THEN resplve will give the whole absolute path from root
+    else if we did give / in out folders it will give absolute path from that folder
+
+    if there are // later then itll give absolute path from there and fill ignore the folder that was before it 
+
+*/
+console.log(path.resolve("folder1","folder2","index.html"));
+console.log(path.resolve("/folder1","folder2","index.html"));
+
+console.log(path.resolve("/folder1","//folder2","index.html"));
+console.log(path.resolve("/folder1","//folder2","../index.html"));
+
+console.log(path.resolve(__dirname,"data.json"));
+
+//revision sheet
+// Built-in path module
+const path = require("path");
+
+// Current file & directory
+console.log(__filename);   // Full path to this file
+console.log(__dirname);    // Full path to current dir
+
+// Extract base name
+path.basename(__filename);     // => "index.js"
+path.basename(__dirname);      // => "project"
+
+// Extract extension
+path.extname(__filename);      // => ".js"
+
+// Parse full path into object
+path.parse(__filename);        // { root, dir, base, ext, name }
+
+// Rebuild path from parsed object
+path.format(path.parse(__filename));
+
+// Check if path is absolute
+path.isAbsolute(__filename);   // => true
+path.isAbsolute("./file.txt"); // => false
+
+// Join paths safely (normalizes automatically)
+path.join("folder", "file.txt");          // => "folder/file.txt"
+path.join(__dirname, "data", "log.txt");  // => absolute safe path
+
+// Resolve to absolute path
+path.resolve("folder", "file.txt");       // => absolute from CWD
+path.resolve(__dirname, "data.json");     // => absolute from __dirname
+

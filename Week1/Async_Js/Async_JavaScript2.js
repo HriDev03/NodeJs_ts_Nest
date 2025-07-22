@@ -233,7 +233,6 @@ function getData(dataId){
 	});
 }
 
-
 // Pehle data 1 aaye gaa agar resolve hua tabhi data 2 aaye ga 
 getData(1).then((res)=>{
 	return getData(2)
@@ -282,7 +281,7 @@ function asyncFuncFail() {
 		console.log(res2);
 	})
 	.catch((err)=>{"console.log",err});
-
+	// agar sabhi pass then good
 	// in case if one promise fails we wont get the resultant array
 
 //2) . any() : Will return us the result from the  first fulfilled promise , if all rejected then error
@@ -290,7 +289,7 @@ function asyncFuncFail() {
 	let p1=asyncFunction();
 	let p3=asyncFuncFail();
 	let p2=asyncFunction2();
-
+	// will show result for first sucessful executed promise
 	// will show result from promise 1 only ,  as it is the fist resolved execution
 	Promise.any([p3,p1,p2])
 	.then((res)=>{
@@ -302,7 +301,7 @@ function asyncFuncFail() {
 
 
 //3) .race() : will show the result of first settled promise resolved or rejected
-
+	//will show result of promise that would be resolved either sucessfull or rejected
 	let p1=asyncFunction();
 	let p3=asyncFuncFail();
 	let p2=asyncFunction2();
@@ -323,7 +322,7 @@ function asyncFuncFail() {
 	let p1 = asyncFunc();
 	let p2 = asyncFunc2();
 	let p3 = asyncFuncFail();
-
+	//result of all promises wether they will be resolved or rejected
 	Promise.allSettled([p1, p2,p3])
   	.then(([res1, res2]) => {
     	console.log("Results of Promise.allSettled:");
@@ -388,13 +387,16 @@ function getData(dataId){
 }
 
 async function getAllData(){
+	
+	// jab takk pehla resolve nahi 
+	// hota tabh takk runkk jaao
 	await getData(1);
-	// jab takk pehla resolve nahi hota tabh takk runkk jaao
+	
 	await getData(2);
 	await getData(3);
 	await getData(4);
-}
 
+}
 getAllData();
 
 // NOW WHEN WE USE ASYNC AWAIT WE HAVE TO USE THEM INSIDE A FUNCTION , WE CAN AVOID IT BY USING

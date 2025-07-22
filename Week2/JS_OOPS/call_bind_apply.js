@@ -34,9 +34,12 @@ namee.printFullName.call(name2,"Mumbai","Maharashtra")//where our this to be poi
 */
 
 function setUserName(userName){
+    
     // complex db validations
+
     //jo bhi set krr rahe ho jo mai refrence de raha hu waha store krr do
     this.userName=userName;//yeh toh idhar set ho raha hai but i wanted it to be set here
+    
 }
 
 /*  

@@ -1,5 +1,6 @@
 //INTRO 
 /*
+
 Events and Event Emitters
 
 Event : Anything that happens at a time is an event
@@ -258,11 +259,8 @@ ChatRoomEventEmitter.removeAllListeners('Left');
 
 
 console.log('Registered Events:', ChatRoomEventEmitter.eventNames());
-
 console.log('Listeners for "Left":', ChatRoomEventEmitter.listenerCount('Left'));
-
-console.log('Listeners for "newMessage":', 
-ChatRoomEventEmitter.listenerCount('newMessage'));
+console.log('Listeners for "newMessage":', ChatRoomEventEmitter.listenerCount('newMessage'));
 
 // This will not be logged because listener was removed
 chatRoom.emit('newMessage', { user: 'Hulk', message: 'Smash!' });
@@ -286,14 +284,13 @@ const ChatRoomEventEmitter = new EventEmitter();
 
 // 1 : A person has joined
 ChatRoomEventEmitter
+   	.on("userJoined", (user) => {
+    	console.log(`${user} joined the chat room.`);
+  	})
 
-  .on("userJoined", (user) => {
-    console.log(`${user} joined the chat room.`);
-  })
-
-  .prependListener("userJoined", (user) => {
-    console.log(`${user} is attempting to join...`);
-  });
+  	.prependListener("userJoined", (user) => {
+    	console.log(`${user} is attempting to join...`);
+	});
 
 
 // 2 : A person has left
@@ -315,20 +312,17 @@ ChatRoomEventEmitter.on("newMessage", ({ userName, message }) => {
 
 
 // 4 : Message replied in the group
-
 ChatRoomEventEmitter.on("replyMessage", ({ userName, message, reply, repliedTo }) => {
   console.log(`${userName} replied to ${repliedTo}: ${message} reply: ${reply}`);
 });
 
 
 // 5 : User left (executed only once)
-
 ChatRoomEventEmitter.once('userLeft', (user) => {
   console.log(`${user} has left.`);
 });
 
 // 6 : Error while sending message (network error)
-
 ChatRoomEventEmitter.on('error', (err) => {
   console.log(`Came across an error while sending message: ${err.message}`);
 });
