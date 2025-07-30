@@ -1,0 +1,123 @@
+OSPA : Other States Admin policy
+where we are storing other states policy
+
+other states : states other than texas
+to handle the policy for other states 
+
+
+how they handle : 3rd party : ArgoNaut insaurance
+so what they do ? from argo they have own app argo insec 
+from there they will send data to ospa and from that itll flow to policy center
+
+in ospa txm team  has the data where there is data for other states policy and quotes and can do some actions in the app 
+
+3rd party (argo naut)------>ospa txm ------------> policy center
+
+how they are doing this
+
+two parties :
+
+txm and os 
+texas policies are maintained by txm 
+and other states are maintained by ArgoNaut
+
+
+quote->issued->policies 
+
+what argo is doing 
+ATID: it is a field which is connecting both texas details and other state details 
+
+when argo is creating a quote and sending it to ospa 
+they are also maintaining a connection between texas policy , every quote/policy is connected to texas policy sa they all eventually come under texas mutual 
+
+
+OS policy is linked with Texas policy 
+and OS QUOTE is linked with other state quote
+
+there is an argo person they logged in and entered data regarding a quote and generated to the quote
+
+sending notification to ospa about generating new quote 
+
+ospa will ask about quote info and store it in os db
+
+OS VENDOR DATA and OS POLICY TABLE (these are 2 tables where we are storing other states data)
+
+after storing os info we will send request to enable other state tab 
+
+texas policy is stored in policy center by txm 
+
+so txm storing all txm-policy-data or txm-quote-data in policy center which is guidewire..
+other states info also transfer to policy center 
+
+
+so for every tx state policy or quote which is connected to other state we have a tab called : other state tab
+
+as an exaple we have a quote:1234 which is connecte to tx quote:567
+so in policy center for policy 567 the other states tab will be enabled and user will be able to see the other states info
+
+3rd party ------> MULESOFT ---------->OSPA
+
+policy-center (ONLY TX RELATED DATA IS THERE)
+
+// OSPA will send info to policy center : policy center will send the tx related info in the ospa which is displayed in the UI
+
+// THE APP WHICH IS BEING BUILT :
+when a policy is made it is storing in 2 tables OS POLICY , OS VENDOR DATA                                            
+
+======================                              
+|     3 Tabs              : OS POLICY DETAILS , OS VENDOR SEARCH , ADMIN             
+======================
+
+
+os vendor search : data saved in os vendor db is displayed in os vendor search 
+
+vendor : who is the transaction which we got from argo 
+there are different system based on where these policies are coming from 
+
+
+
+OS POLICY quote search is the main chunk of the application : doing all the 
+interations with policy center and then with ARGO 
+
+and sending charge to billing center
+data coming from os policy and also some tx data from policy center 
+OS policy mai bhi tx ki info show hoti hai aur baki other states waala toh hai hii
+
+AS a OSPA USER we can edit os policies , admin have those priveledges 
+
+remove link : we can remove the link of the tx policy and can relink by clicking on edit 
+
+link wil come from argo and argo will make this atid field 
+
+And to issue a policy we will get a bind request from POLICY CENTER and then from there we will send it to argo
+
+THERE IS A BIND REQUEST that comes FROM policy center to OSPA (you have to issue this policy)
+then after validations we will tell argo that we need to issue this policy
+
+ARGO dosent have any access to OSPA so then txm will get notification to check ospa to issue this policy
+TXM person will come to other state policy admin  and issue the policy 
+
+and also update the texas db
+
+and on the billing center there is some charged calculated amount that ospa will send to billing center 
+
+OSPA sending policy data to policy center also to illing center 
+
+we have different center when ever OSPA sends data to billingcenter we create a transaction which is called as policy transaction
+by the billing center api 
+
+in the policy change we have different policies based on the transport 
+every transport will have their own calculation and their own rules 
+
+Majorly we have 3 teams : Mulesot + ospa(AWS + JAVA) + guiedwire(policy center and billing center)
+
+Modernise the OLD APP-----> 
+
+if os supervisor opens that may not have the full priveledges and all this record is present in the os log table 
+
+everyday at 6am it ll clear all the records that are present in os lock table 
+and that lock will actomatically will get removed 
+
+change policy status for expired policy , and change status of policies that are expired and should run thrice a day 
+
+

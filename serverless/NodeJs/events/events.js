@@ -42,9 +42,7 @@ function newPersonJonined(name){
 }
 
 chatRoomEventEmitter.setMaxListeners(10)
-
 console.log(chatRoomEventEmitter.getMaxListeners());
-
 console.log(chatRoomEventEmitter.eventNames());
 
 function main(){
@@ -57,14 +55,16 @@ function main(){
 
 main()
 
-
 /*
+    
     Chat room 
+    
     On new Message
     on person Joined
     on ReplyMessage
     on Person Left group chat 
     setMaxListeners
     getMaxListeners
+
 
 */
