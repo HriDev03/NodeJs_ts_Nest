@@ -1,0 +1,20 @@
+// What is api gateway why its needed
+
+earlier there was monolithic arch all our bakend was in a single server 
+saari requests ek hii server pe jaaye gi 
+
+aaj bhi use hota hai monolithic arch 
+
+DEVIDING THE BACKEDN CODE IN DIFFERENT PARTS
+It decouplled the system into different parts made it fault tolrent 
+
+but got another problem :
+Hrr serer ke liye alag authN and authZ hoga 
+ssl check : ki request https hii aaye
+
+frontend app should know the address of all the servers
+
+
+API GATEWAY : iske andar saare authN and authZ , rate limit ,  ssl routing sab hoga
+user koi bhi request bheje ga toh directly server ko naa jaake api gateway prr jaaye gi 
+

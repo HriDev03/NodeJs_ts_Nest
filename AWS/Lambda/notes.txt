@@ -216,11 +216,11 @@ aws lambda invoke --function-name aws_function_name iske_output_koha_store karug
 aws lambda invoke --function-name invocation-type-func output.txt 
 
 ===========================================================================================================
-
-Maximum age of events : if an async event is there and they have not got the access to lambda because 
-access to lambda because it might be throttlling  or busy so when it eventually gets the access we check 
-for the maximum age of event so that we might process some stale /old event
-
+                                                                                                          |
+Maximum age of events : if an async event is there and they have not got the access to lambda because     |
+access to lambda because it might be throttlling  or busy so when it eventually gets the access we check  |
+for the maximum age of event so that we might process some stale /old event                               |
+                                                                                                          |
 ============================================================================================================
 
 DEAD LATTER QUEUE : 
@@ -243,4 +243,46 @@ toh hamara lambda function call hona chahiye
 
 // when there is some triger based on s3 it leads to async invocation 
 
+=========================================================================================================
+agr hamari koi org library ho/ khud ki library ho , kuch functions ho
+we want to provide it in all the layers 
 
+org mai ek library hai, voh ek common library hai and usmai koi function hai 
+, voh function hume data nikal ke deta hai 
+
+50+ lambda functions hai jaha use ho rahe hai 
+soo unhe ek layer mai daal diya , and uss layer mai usse use krr rahe hai 
+=================================================================================================================================================
+we can also add custom layers the same way we add normal layers 
+HOW MANY LAYERS WE CAN ADD TO OUR LAMBDA FUNCTION ?
+
+Layer Limit: 5 layers per function.
+
+Combined Unzipped Size: The total unzipped size of the function and all layers combined must not exceed 250 MB.
+
+Layer Order Matters: If multiple layers export the same file path, the last added layer takes precedence (i.e., it overrides earlier ones).
+=================================================================================================================================================
+VERSIONING IN LAMBDA FUNCTION 
+
+Like supponse we made a lambda function V1 and then we have been using it after some time a need arrise that
+we need to make changes in that function and need to make a v2 version of it
+
+Now suppose aur V2 is not working as it should be ,
+but we have destroyed the previous working version of our code 
+
+HOW TO HANDLE THAT : with the help of versions
+Lambda version1:v1
+Lambda version2:v2
+latest code -$Latest:this latest version is mutable we can change all its parameters
+
+==================================================================================================
+Resource Based Policy : 
+iss lambda function ko kon kon execute krr sakta hai voh mention karege : ALB , s3 bucket ETC.
+AWS Labda ko koi cheez access krr rahi hai toh uske liye roles 
+
+
+EXECUTION ROLE : 
+voh saari cheeze jo AWS LAMBDA KHUD EXECUTE KARNE WAALA HAI UN CGEEZO KO 
+AGAR LAMBDA KO cheeze execute karni hai toh uske liye EXECUTION ROLE
+
+==================================================================================================

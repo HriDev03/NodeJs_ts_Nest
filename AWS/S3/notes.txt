@@ -78,4 +78,48 @@ S3 STANDARD , (HIGH FREQUENCY accessible DATA)
 S3 intelligent tiering , 
 s3 standard-IA , GLACIER TYPE STORAGE
 
+S3 EVEN OBJECT LOOKS LIKE:
+
+{
+  "Records": [
+    {
+      "eventVersion": "2.1",
+      "eventSource": "aws:s3",
+      "awsRegion": "us-east-1",
+      "eventTime": "2023-07-31T12:34:56.789Z",
+      "eventName": "ObjectCreated:Put",
+      "s3": {
+        "bucket": {
+          "name": "your-bucket-name",
+          "arn": "arn:aws:s3:::your-bucket-name"
+        },
+        "object": {
+          "key": "path/to/your/file.jpg",
+          "size": 1024,
+          "eTag": "d41d8cd98f00b204e9800998ecf8427e"
+        }
+      }
+    }
+  ]
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
